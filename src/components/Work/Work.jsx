@@ -90,7 +90,7 @@ const Work = () => {
               onClick={() => setSelectedProject(project)}
               className="group min-w-full snap-start overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer md:min-w-[calc((100%-24px)/2)]"
             >
-              <div className="relative h-44 w-full overflow-hidden bg-gray-50">
+              <div className="relative w-full overflow-hidden bg-gray-50 aspect-[16/9]">
                 <img
                   src={project.image}
                   alt={project.title}
@@ -106,8 +106,6 @@ const Work = () => {
                     <h3 className="mt-2 text-xl font-semibold text-[var(--text)]">{project.title}</h3>
                   </div>
                 </div>
-
-                <p className="mt-3 text-sm leading-6 text-[var(--muted)] line-clamp-3">{project.description}</p>
 
                 <div className="mt-4 flex flex-wrap gap-2">
                   {project.tags.map((tag, i) => (
@@ -148,7 +146,7 @@ const Work = () => {
                   <img
                     src={selectedProject.image}
                     alt={selectedProject.title}
-                    className="h-full w-full rounded-xl object-cover shadow-sm"
+                    className="w-full rounded-xl object-cover shadow-sm aspect-[16/9]"
                   />
                 </div>
 
