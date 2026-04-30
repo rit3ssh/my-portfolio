@@ -129,8 +129,8 @@ const Work = () => {
         </div>
 
         {selectedProject && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
-            <div className="w-full max-w-3xl overflow-hidden rounded-2xl bg-white shadow-2xl">
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4 overflow-y-auto">
+            <div className="w-full max-w-3xl overflow-hidden rounded-2xl bg-white shadow-2xl my-auto max-h-[90vh] flex flex-col">
               <div className="flex items-center justify-between border-b border-gray-100 px-6 py-4">
                 <div>
                   <p className="text-xs uppercase tracking-[0.2em] text-[var(--accent)]">Project details</p>
@@ -141,7 +141,7 @@ const Work = () => {
                 </button>
               </div>
 
-              <div className="grid gap-0 md:grid-cols-[1.2fr_0.8fr]">
+              <div className="grid gap-0 md:grid-cols-[1.2fr_0.8fr] overflow-y-auto">
                 <div className="bg-gray-50 p-4 md:p-6">
                   <img
                     src={selectedProject.image}
@@ -150,8 +150,10 @@ const Work = () => {
                   />
                 </div>
 
-                <div className="p-6">
-                  <p className="text-sm leading-6 text-[var(--muted)]">{selectedProject.description}</p>
+                <div className="p-6 flex flex-col">
+                  <div className="overflow-y-auto max-h-48 pr-2">
+                    <p className="text-sm leading-6 text-[var(--muted)]">{selectedProject.description}</p>
+                  </div>
 
                   <div className="mt-5 flex flex-wrap gap-2">
                     {selectedProject.tags.map((tag, i) => (
@@ -161,7 +163,7 @@ const Work = () => {
                     ))}
                   </div>
 
-                  <div className="mt-6 flex gap-3">
+                  <div className="mt-auto pt-6 flex gap-3">
                     <a
                       href={selectedProject.github}
                       target="_blank"
