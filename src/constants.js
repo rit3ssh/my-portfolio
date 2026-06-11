@@ -47,15 +47,8 @@ import TUlogo from './assets/education_logo/TULogo.png';
 import movierecommenderLogo from './assets/work_logo/movie-recommender.png';
 import chatappLogo from './assets/work_logo/chatapp.png';
 import sevabotLogo from './assets/work_logo/sevabot.png';
-import githubdetLogo from './assets/work_logo/github_det.png';
-import csprepLogo from './assets/work_logo/cs_prep.png';
-import movierecLogo from './assets/work_logo/movie_rec.png';
-import taskremLogo from './assets/work_logo/task_rem.png';
-import npmLogo from './assets/work_logo/npm.png';
-import webverLogo from './assets/work_logo/web_dig.png';
-import cmLogo from './assets/work_logo/cm.png';
-import imagesearchLogo from './assets/work_logo/image_search.png';
-import removebgLogo from './assets/work_logo/remove_bg.png';
+import imageColorizationLogo from './assets/work_logo/imagecolorizationresult.png';
+
 
 
 export const SkillsInfo = [
@@ -245,10 +238,10 @@ export const SkillsInfo = [
       title: "Image Colorizer",
       description:
         "Trained a deep learning model using a cGAN architecture to colorize grayscale images, enhancing the visual appeal and providing a practical application of generative adversarial networks in image processing.",
-      image: imagesearchLogo,
+      image: imageColorizationLogo,
       tags: ["Python", "PyTorch", "pandas", "numpy", "matplotlib"],
       github: "https://github.com/rit3ssh/IMAGE-COLORIZATION-VIA-CGANS-USING-RESNET-18-BACKED-U-NET-ARCHITECTURE",
       // webapp: "https://www.npmjs.com/package/cmtk-email-validator",
     },
 
-  ];  
+  ];  import imagesearchLogo from './assets/work_logo/image_search.png';

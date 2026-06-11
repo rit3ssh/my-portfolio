@@ -44,7 +44,7 @@ const About = () => {
         </div>
 
         <div className="hidden md:flex md:w-1/3 justify-center">
-          <img src={profileImage} alt="Ritesh" className="w-56 h-56 rounded-full object-cover shadow" />
+          <img src={profileImage} alt="Ritesh" className="w-60 h-60 rounded-full object-cover shadow" />
         </div>
       </div>
     </section>

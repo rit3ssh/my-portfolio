@@ -24,7 +24,7 @@ html {
 /* Small utility to center sections consistently */
 @layer utilities {
   .page-container {
-    @apply px-6 md:px-12 lg:px-24 max-w-5xl mx-auto;
+    @apply px-4 md:px-12 lg:px-10 max-w-5xl mx-auto;
   }
 
   .no-scrollbar {
