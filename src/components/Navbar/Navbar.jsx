@@ -16,6 +16,27 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Expose header height as a CSS variable so other components (toasts) can position below the navbar
+  useEffect(() => {
+    const setHeaderHeight = () => {
+      const header = document.querySelector('header');
+      if (header) {
+        const h = header.getBoundingClientRect().height;
+        document.documentElement.style.setProperty('--header-height', `${Math.ceil(h)}px`);
+      }
+    };
+
+    setHeaderHeight();
+    window.addEventListener('resize', setHeaderHeight);
+    // also update after small delay to catch font loads
+    const t = setTimeout(setHeaderHeight, 250);
+
+    return () => {
+      window.removeEventListener('resize', setHeaderHeight);
+      clearTimeout(t);
+    };
+  }, []);
+
   const menuItems = [
     { id: "about", label: "About" },
     { id: "skills", label: "Skills" },

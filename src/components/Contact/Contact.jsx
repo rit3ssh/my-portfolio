@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import emailjs from "@emailjs/browser";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -6,23 +6,38 @@ import "react-toastify/dist/ReactToastify.css";
 const Contact = () => {
   const form = useRef();
   const [isSent, setIsSent] = useState(false);
+  const [isSending, setIsSending] = useState(false);
+
+  // Prefer Vite env variables if you've added them (VITE_ prefix). Falls back to hardcoded values.
+  const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID || "service_e3exjuv";
+  const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || "template_u5nvn64";
+  const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || "Xf8aSKaRglyLe9hs5";
+
+  useEffect(() => {
+    // Initialize EmailJS (optional if you pass public key to sendForm)
+    if (PUBLIC_KEY) {
+      try {
+        emailjs.init(PUBLIC_KEY);
+      } catch (e) {
+        // init can throw if already initialized in some envs; ignore
+      }
+    }
+  }, []);
 
   const sendEmail = (e) => {
     e.preventDefault();
 
+    setIsSending(true);
+
     emailjs
-      .sendForm(
-        "service_eyelrco",  // Replace with your EmailJS Service ID
-        "template_d9giith",  // Replace with your EmailJS Template ID
-        form.current,
-        "Xf8aSKaRglyLe9hs5"  // Replace with your EmailJS Public Key
-      )
+      .sendForm(SERVICE_ID, TEMPLATE_ID, form.current)
       .then(
         () => {
           setIsSent(true);
-          form.current.reset(); // Reset form fields after sending
-          toast.success("Message sent successfully! ✅", {
-            position: "top-right",
+          setIsSending(false);
+          if (form.current) form.current.reset(); // Reset form fields after sending
+          toast.success("Message sent successfully ! ✅", {
+            position: "top-center",
             autoClose: 3000,
             hideProgressBar: false,
             closeOnClick: true,
@@ -33,8 +48,9 @@ const Contact = () => {
         },
         (error) => {
           console.error("Error sending message:", error);
+          setIsSending(false);
           toast.error("Failed to send message. Please try again.", {
-            position: "top-right",
+            position: "top-center",
             autoClose: 3000,
             hideProgressBar: false,
             closeOnClick: true,
@@ -80,10 +96,25 @@ const Contact = () => {
 
             <button
               type="submit"
-              className="inline-flex items-center justify-center rounded-md bg-[var(--accent)] text-white px-4 py-2 text-sm font-medium hover:opacity-95"
+              disabled={isSending}
+              className={`inline-flex items-center justify-center rounded-md bg-[var(--accent)] text-white px-4 py-2 text-sm font-medium transition-opacity duration-200 ${
+                isSending ? "opacity-70 cursor-not-allowed" : "hover:opacity-95"
+              }`}
             >
-              Send message
+              {isSending ? "Sending..." : "Send message"}
             </button>
+            <ToastContainer
+              position="top-center"
+              autoClose={3000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="dark"
+            />
           </form>
         </div>
       </div>

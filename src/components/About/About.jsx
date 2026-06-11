@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactTypingEffect from 'react-typing-effect';
 import profileImage from '../../assets/profile2.jpg';
+import riteshCV from '../../assets/cv/Ritesh_Sahani_CV.pdf';
+
 
 const About = () => {
   return (
@@ -29,14 +31,15 @@ const About = () => {
           </h3>
 
           <p className="mt-6 text-[var(--muted)] max-w-xl leading-relaxed text-center md:text-left">
-            I'm a Computer Engineering student and developer focused on building clear,
-            accessible interfaces and robust applications. I enjoy turning complex problems
-            into simple, elegant solutions.
+            Hello, I’m a Computer Engineering pass out from TU,IOE Purwanchal Campus, Dharan with in depth understanding of computer
+            fundamental include OS, DBMS, DSA, Network , Artificial Intelligence & Machine Learning . In addition I also have some
+            experience working with the latest tech stacks to build systems. I would also like to introduce myself as a quick learner, team
+            player and a motivated engineer. I’m currently looking for internships and fresher jobs.
           </p>
 
           <div className="mt-6 flex gap-3 justify-center md:justify-start">
             <a href="#contact" className="inline-flex items-center rounded-md bg-[var(--accent)] text-white px-4 py-2 text-sm font-medium">Get in touch</a>
-            <a href="#" className="inline-flex items-center rounded-md border border-gray-200 px-4 py-2 text-sm">Download CV</a>
+            <a href= {riteshCV} download="rs_CV.pdf" className="inline-flex items-center rounded-md border border-gray-200 px-4 py-2 text-sm">Download CV</a>
           </div>
         </div>
 

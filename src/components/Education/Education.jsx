@@ -2,7 +2,7 @@ import React, { useMemo, useState } from "react";
 import { education } from "../../constants"; // Import the education data
 
 const Education = () => {
-  const [expandedId, setExpandedId] = useState(null);
+  const [hoveredId, setHoveredId] = useState(null);
 
   const orderedEducation = useMemo(
     () => [...education].sort((a, b) => a.order - b.order),
@@ -24,15 +24,14 @@ const Education = () => {
 
           <div className="space-y-5">
             {orderedEducation.map((edu) => {
-              const isExpanded = expandedId === edu.id;
+              const isHovered = hoveredId === edu.id;
 
               return (
                 <div key={edu.id} className="relative pl-14 md:pl-20">
-                  <button
-                    type="button"
-                    onClick={() => setExpandedId(isExpanded ? null : edu.id)}
-                    className="group w-full rounded-2xl border border-gray-100 bg-white p-5 text-left shadow-sm transition-all duration-300 hover:shadow-md"
-                    aria-expanded={isExpanded}
+                  <div
+                    onMouseEnter={() => setHoveredId(edu.id)}
+                    onMouseLeave={() => setHoveredId(null)}
+                    className="w-full rounded-2xl border border-gray-100 bg-white p-5 text-left shadow-sm transition-shadow duration-500 hover:shadow-lg"
                   >
                     <div className="absolute left-1 top-5 flex h-10 w-10 items-center justify-center rounded-full border-4 border-white bg-[var(--accent)] text-sm font-semibold text-white shadow-sm md:left-3">
                       {String(edu.order).padStart(2, "0")}
@@ -55,17 +54,8 @@ const Education = () => {
                       </div>
                     </div>
 
-                    <div className="mt-4 flex items-center justify-between border-t border-gray-100 pt-4">
-                      <span className="text-sm text-[var(--muted)]">
-                        {isExpanded ? "Hide details" : "Click to view institution and grades"}
-                      </span>
-                      <span className={`text-[var(--muted)] transition-transform duration-300 ${isExpanded ? "rotate-180" : ""}`}>
-                        ▼
-                      </span>
-                    </div>
-
-                    {isExpanded && (
-                      <div className="mt-4 grid gap-4 border-t border-gray-100 pt-4 md:grid-cols-[1fr_1.2fr]">
+                    {isHovered && (
+                      <div className="mt-4 flex border-t border-gray-100 pt-4  animate-fadeIn">
                         <div className="space-y-2 text-sm text-[var(--muted)]">
                           <div>
                             <span className="font-medium text-[var(--text)]">Institution:</span>{" "}
@@ -75,11 +65,11 @@ const Education = () => {
                             <span className="font-medium text-[var(--text)]">Result:</span>{" "}
                             {edu.grade}
                           </div>
-                        </div>
                         <p className="text-sm leading-6 text-[var(--muted)]">{edu.desc}</p>
+                        </div>
                       </div>
                     )}
-                  </button>
+                  </div>
                 </div>
               );
             })}
