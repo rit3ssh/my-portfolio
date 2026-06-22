@@ -15,7 +15,7 @@ const Education = () => {
         <div className="text-center mb-8">
           <h2 className="text-2xl md:text-3xl font-semibold text-[var(--text)]">Education</h2>
           <p className="text-[var(--muted)] mt-2 max-w-2xl mx-auto">
-            A simple academic roadmap starting from school level and moving up to university.
+            Academic roadmap starting from school level and moving up to university.
           </p>
         </div>
 

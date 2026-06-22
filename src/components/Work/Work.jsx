@@ -52,8 +52,8 @@ const Work = () => {
         <div className="text-center mb-8">
           <h2 className="text-2xl md:text-3xl font-semibold text-[var(--text)]">Projects</h2>
           <p className="text-[var(--muted)] mt-2 max-w-2xl mx-auto">
-            Selected projects focused on clean UI, practical functionality, and tools I can discuss confidently in interviews.
-          </p>
+            Selected projects focused on clean UI, practical functionality, and tools I have have worked on.
+            </p>
         </div>
 
         <div className="relative mx-auto max-w-5xl px-0 md:px-14">

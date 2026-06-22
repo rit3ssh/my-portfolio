@@ -48,6 +48,7 @@ import movierecommenderLogo from './assets/work_logo/movie-recommender.png';
 import chatappLogo from './assets/work_logo/chatapp.png';
 import sevabotLogo from './assets/work_logo/sevabot.png';
 import imageColorizationLogo from './assets/work_logo/imagecolorizationresult.png';
+import interviewprepLogo from './assets/work_logo/perfectpreparation.png';
 
 
 
@@ -243,5 +244,13 @@ export const SkillsInfo = [
       github: "https://github.com/rit3ssh/IMAGE-COLORIZATION-VIA-CGANS-USING-RESNET-18-BACKED-U-NET-ARCHITECTURE",
       // webapp: "https://www.npmjs.com/package/cmtk-email-validator",
     },
-
+    {
+      id: 4,
+      title: "Perfect Preparation - Interview Preparation Platform",
+      description:
+        "A comprehensive interview preparation platform that uses user input and job preferences to generate CV and generate interview questions and answers using Gemini API. The platform provides users with a structured learning path, practice problems.",
+      image: interviewprepLogo,
+      tags: ["React JS","SCSS", "Node JS", "Express JS", "MongoDB", "Gemini API"],
+      github: "https://github.com/rit3ssh/perfectpreparation",
+    }
   ];  import imagesearchLogo from './assets/work_logo/image_search.png';
