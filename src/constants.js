@@ -173,7 +173,7 @@ export const SkillsInfo = [
       location: "Dharan-08",
       date: "2083 BS | 2026 AD",
       status: "Graduated",
-      grade: "72.98 %",
+      grade: "73.08 %",
       desc: "I completed my Bachelor in Computer Engineering from Purwanchal Engineering Campus, Dharan-08, under Tribhuvan University.I've completed all the coursework and requirements for my degree, and I am currently awaiting the final results. My academic performance has been good.",
       degree: "Bachelor in Computer Engineering(B.E.)-Tribhuvan University",
       order: 3,
