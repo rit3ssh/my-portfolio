@@ -156,7 +156,7 @@ export const education = [
       img: durgaschoollogo,
       school: "Shree Durga Model Secondary School, Kalaiya-08,Bara",
       location: "Kalaiya-08, Bara",
-      date: "2077 BS | 2021 AD",
+      date: "2077 BS | 2020 AD",
       grade: "3.54 GPA",
       desc: "I've completed my intermediate(+2) education from Shree Durga Model Secondary School, Kalaiya-08, Bara, under the NEB board.Completed all the coursework,practicals and assignments for my degree and graduated with a GPA of 3.54. My academic performance has been good.",
       degree: "NEB(TSLC), Computer Engineering",
