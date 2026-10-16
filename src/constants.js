@@ -1,43 +1,26 @@
 // Skills Section Logo's
 import htmlLogo from './assets/tech_logo/html.png';
 import cssLogo from './assets/tech_logo/css.png';
-import sassLogo from './assets/tech_logo/sass.png';
 import javascriptLogo from './assets/tech_logo/javascript.png';
 import reactjsLogo from './assets/tech_logo/reactjs.png';
-import angularLogo from './assets/tech_logo/angular.png';
-import reduxLogo from './assets/tech_logo/redux.png';
-import nextjsLogo from './assets/tech_logo/nextjs.png';
 import tailwindcssLogo from './assets/tech_logo/tailwindcss.png';
-import gsapLogo from './assets/tech_logo/gsap.png';
-import materialuiLogo from './assets/tech_logo/materialui.png';
 import bootstrapLogo from './assets/tech_logo/bootstrap.png';
-import springbootLogo from './assets/tech_logo/springboot.png';
 import nodejsLogo from './assets/tech_logo/nodejs.png';
 import expressjsLogo from './assets/tech_logo/express.png';
 import mysqlLogo from './assets/tech_logo/mysql.png';
 import mongodbLogo from './assets/tech_logo/mongodb.png';
-import firebaseLogo from './assets/tech_logo/firebase.png';
 import cLogo from './assets/tech_logo/c.png';
 import cppLogo from './assets/tech_logo/cpp.png';
-import javaLogo from './assets/tech_logo/java.png';
 import pythonLogo from './assets/tech_logo/python.png';
-import typescriptLogo from './assets/tech_logo/typescript.png';
 import gitLogo from './assets/tech_logo/git.png';
 import githubLogo from './assets/tech_logo/github.png';
 import vscodeLogo from './assets/tech_logo/vscode.png';
 import postmanLogo from './assets/tech_logo/postman.png';
 import mcLogo from './assets/tech_logo/mc.png';
-import figmaLogo from './assets/tech_logo/figma.png';
-import netlifyLogo from './assets/tech_logo/netlify.png';
 import vercelLogo from './assets/tech_logo/vercel.png';
 import postgreLogo from './assets/tech_logo/postgre.png';
-import csharpLogo from './assets/tech_logo/csharp.png';
-import Djangologo from './assets/tech_logo/django.svg'
-import djangoRESTframeworklogo from './assets/tech_logo/djangorestframework.png'
-// Experience Section Logo's
-import webverseLogo from './assets/company_logo/webverse_logo.png';
-import agcLogo from './assets/company_logo/agc_logo.png';
-import newtonschoolLogo from './assets/company_logo/newtonschool_logo.png';
+import Djangologo from './assets/tech_logo/django.svg';
+import djangoRESTframeworklogo from './assets/tech_logo/djangorestframework.png';
 
 // Education Section Logo's
 import durgaschoollogo from './assets/education_logo/durgaschool.jpg';
@@ -69,12 +52,10 @@ export const SkillsInfo = [
   {
     title: 'Backend',
     skills: [
-      // { name: 'Springboot', logo: springbootLogo },
       { name: 'Node JS', logo: nodejsLogo },
       { name: 'Express JS', logo: expressjsLogo },
       { name: 'MySQL', logo: mysqlLogo },
       { name: 'MongoDB', logo: mongodbLogo },
-      // { name: 'Firebase', logo: firebaseLogo },
       { name: 'PostgreSQL', logo: postgreLogo },
       { name: 'Django', logo: Djangologo },
 
@@ -86,11 +67,8 @@ export const SkillsInfo = [
     skills: [
       { name: 'C', logo: cLogo },
       { name: 'C++', logo: cppLogo },
-      // { name: 'Java', logo: javaLogo },
       { name: 'Python', logo: pythonLogo },
-      // { name: 'C-Sharp', logo: csharpLogo },
       { name: 'JavaScript', logo: javascriptLogo },
-      // { name: 'TypeScript', logo: typescriptLogo },
     ],
   },
   {
@@ -103,16 +81,13 @@ export const SkillsInfo = [
       { name: 'Compass', logo: mcLogo },
       { name: 'Vercel', logo: vercelLogo },
       { name: 'Docker', logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
-      // { name: 'Netlify', logo: netlifyLogo },
-      // { name: 'Figma', logo: figmaLogo },
     ],
   },
 ];
 
-  export const experiences = [
+export const experiences = [
     {
       id: 0,
-      img: webverseLogo,
       role: "Fullstack Developer",
       // company: "Webverse Digital",
       // date: "April 2024 - Present",
@@ -132,7 +107,6 @@ export const SkillsInfo = [
     },
     {
       id: 1,
-      img: agcLogo,
       role: "Fullstack Engineer",
       // company: "Agumentik Group of Companies",
       // date: "July 2023 - March 2024",
@@ -149,7 +123,6 @@ export const SkillsInfo = [
     },
     {
       id: 2,
-      img: newtonschoolLogo,
       role: "Frontend Intern",
       // company: "Newton School",
       // date: "September 2021 - August 2022",
@@ -163,9 +136,9 @@ export const SkillsInfo = [
         "Material UI",
       ],
     },
-  ];
-  
-  export const education = [
+];
+
+export const education = [
     {
       id: 0,
       img: TUlogo,
@@ -207,7 +180,7 @@ export const SkillsInfo = [
       id: 0,
       title: "RAG-Based Chatbot for Nepali Language",
       description:
-        "A sophisticated RAG-based chatbot system designed specifically for Nepali language processing. This project leverages advanced NLP techniques to enable semantic search and document-based information retrieval. The chatbot utilizes ChromaDB for efficient vector storage and retrieval, SentenceTransformer for generating high-quality embeddings, and a robust backend powered by Django and Django REST Framework. The frontend provides an intuitive React-based interface for seamless user interactions with Nepali language documents.",
+        "A Nepali-language RAG chatbot for semantic search and document retrieval, built with SentenceTransformer, ChromaDB, Django REST Framework, and React.",
       image: sevabotLogo,
       tags: ["Python", "Django", "REST Framework", "React JS", "ChromaDB", "SentenceTransformer"],
       github: "https://github.com/rit3ssh/SevaBot-A-RAG-based-nepali-chatbot",
@@ -218,7 +191,7 @@ export const SkillsInfo = [
       id: 1,
       title: "KuraKani - Real Time Chat Application",
       description:
-        "A web application that provides real-time chat functionality for users to communicate instantly. The application features a modern interface with seamless integration of Socket.IO for real-time messaging capabilities.",
+        "A real-time chat application with a modern React interface and Socket.IO messaging, powered by a Node.js, Express, and MongoDB backend.",
       image: chatappLogo,
       tags: ["React JS", "MongoDB", "Node JS", "Express JS", "tailwindcss","DaisyUI", "Socket.IO"],
       github: "https://github.com/rit3ssh/KuraKani-MERN",
@@ -228,7 +201,7 @@ export const SkillsInfo = [
       id: 2,
       title: "Movie Recommendation App",
       description:
-        "A movie recommendation system that provides personalized movie suggestions based on user preferences.",
+        "A personalized movie recommendation app that suggests films based on user preferences.",
       image: movierecommenderLogo,
       tags: ["Jupyter Notebook", "Python", "Pandas","numpy","huggingface_hub","streamlit"],
       github: "https://github.com/rit3ssh/movie-recommender-system",
@@ -238,7 +211,7 @@ export const SkillsInfo = [
       id: 3,
       title: "Image Colorizer",
       description:
-        "Trained a deep learning model using a cGAN architecture to colorize grayscale images, enhancing the visual appeal and providing a practical application of generative adversarial networks in image processing.",
+        "A cGAN-based deep learning model that colorizes grayscale images using PyTorch.",
       image: imageColorizationLogo,
       tags: ["Python", "PyTorch", "pandas", "numpy", "matplotlib"],
       github: "https://github.com/rit3ssh/IMAGE-COLORIZATION-VIA-CGANS-USING-RESNET-18-BACKED-U-NET-ARCHITECTURE",
@@ -248,9 +221,9 @@ export const SkillsInfo = [
       id: 4,
       title: "Perfect Preparation - Interview Preparation Platform",
       description:
-        "A comprehensive interview preparation platform that uses user input and job preferences to generate CV and generate interview questions and answers using Gemini API. The platform provides users with a structured learning path, practice problems.",
+        "An interview preparation platform that uses job preferences and the Gemini API to generate CVs, interview questions, answers, and guided practice.",
       image: interviewprepLogo,
       tags: ["React JS","SCSS", "Node JS", "Express JS", "MongoDB", "Gemini API"],
       github: "https://github.com/rit3ssh/perfectpreparation",
     }
-  ];  import imagesearchLogo from './assets/work_logo/image_search.png';
+];

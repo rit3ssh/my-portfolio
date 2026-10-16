@@ -1,191 +1,102 @@
-import React, { useEffect, useRef, useState } from "react";
-import { projects } from "../../constants";
-import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import React, { useEffect, useRef, useState } from 'react';
+import { FaGithub } from 'react-icons/fa';
+import { projects } from '../../constants';
 
-const Work = () => {
-  const [selectedProject, setSelectedProject] = useState(null);
-  const carouselRef = useRef(null);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(false);
-
-  const updateScrollState = () => {
-    const container = carouselRef.current;
-    if (!container) return;
-
-    const { scrollLeft, scrollWidth, clientWidth } = container;
-    setCanScrollLeft(scrollLeft > 0);
-    setCanScrollRight(scrollLeft + clientWidth < scrollWidth - 1);
-  };
+const Work = ({ active }) => {
+  const [activeProject, setActiveProject] = useState(0);
+  const projectsSpaceRef = useRef(null);
 
   useEffect(() => {
-    updateScrollState();
-    const container = carouselRef.current;
-    if (!container) return undefined;
+    let ticking = false;
 
-    container.addEventListener('scroll', updateScrollState, { passive: true });
-    window.addEventListener('resize', updateScrollState);
+    const updateActiveProject = () => {
+      ticking = false;
+      const projectsSpace = projectsSpaceRef.current;
+      if (!projectsSpace) return;
+
+      const distanceScrolled = Math.max(0, -projectsSpace.getBoundingClientRect().top);
+      const scrollStep = window.innerWidth <= 768
+        ? window.innerHeight * 1.35
+        : window.innerHeight * 1.6;
+      const nextProject = Math.min(
+        projects.length - 1,
+        Math.floor(distanceScrolled / scrollStep)
+      );
+
+      setActiveProject((currentProject) => (
+        currentProject === nextProject ? currentProject : nextProject
+      ));
+    };
+
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        window.requestAnimationFrame(updateActiveProject);
+      }
+    };
+
+    updateActiveProject();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', updateActiveProject);
 
     return () => {
-      container.removeEventListener('scroll', updateScrollState);
-      window.removeEventListener('resize', updateScrollState);
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', updateActiveProject);
     };
   }, []);
 
-  const scrollCarousel = (direction) => {
-    const container = carouselRef.current;
-    if (!container) return;
-
-    const card = container.querySelector('[data-project-card]');
-    const cardWidth = card?.getBoundingClientRect().width ?? 0;
-    const gap = 24;
-    const amount = (cardWidth * 2) + gap;
-
-    container.scrollBy({
-      left: direction === 'left' ? -amount : amount,
-      behavior: 'smooth',
-    });
-  };
+  const project = projects[activeProject];
 
   return (
-    <section id="work" data-reveal className="py-16">
-      <div className="page-container">
-        <div className="text-center mb-8">
-          <h2 className="text-2xl md:text-3xl font-semibold text-[var(--text)]">Projects</h2>
-          <p className="text-[var(--muted)] mt-2 max-w-2xl mx-auto">
-            Selected projects focused on clean UI, practical functionality, and tools I have have worked on.
-            </p>
+    <section
+      id="work"
+      data-section="work"
+      className={`full-section black reveal ${active === 'work' ? 'visible' : ''}`}
+    >
+      <div className="section-inner">
+        <div className="section-header reveal">
+          <p className="eyebrow">Selected Work</p>
+          <h2 className="section-title">Projects</h2>
+          <p className="section-desc">
+            Scroll through a few practical projects built with clean interfaces and useful functionality.
+          </p>
         </div>
 
-        <div className="relative mx-auto max-w-5xl px-0 md:px-14">
-          {canScrollLeft && (
-            <button
-              type="button"
-              onClick={() => scrollCarousel('left')}
-              className="absolute left-0 top-1/2 z-10 hidden -translate-y-1/2 -translate-x-1/2 items-center justify-center rounded-full border border-gray-200 bg-white p-2 shadow-sm transition hover:bg-gray-50 md:flex"
-              aria-label="Scroll projects left"
-            >
-              <FiChevronLeft size={18} />
-            </button>
-          )}
-
-          {canScrollRight && (
-            <button
-              type="button"
-              onClick={() => scrollCarousel('right')}
-              className="absolute right-0 top-1/2 z-10 hidden -translate-y-1/2 translate-x-1/2 items-center justify-center rounded-full border border-gray-200 bg-white p-2 shadow-sm transition hover:bg-gray-50 md:flex"
-              aria-label="Scroll projects right"
-            >
-              <FiChevronRight size={18} />
-            </button>
-          )}
-
-          <div
-            ref={carouselRef}
-            className="no-scrollbar flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth pb-2"
-          >
-            {projects.map((project) => (
-            <div
-              key={project.id}
-              data-project-card
-              onClick={() => setSelectedProject(project)}
-              className="group min-w-full snap-start overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer md:min-w-[calc((100%-24px)/2)]"
-            >
-              <div className="relative w-full overflow-hidden bg-gray-50 aspect-[16/9]">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
+        <div
+          ref={projectsSpaceRef}
+          className="projects-scroll-space"
+          style={{ '--project-count': projects.length }}
+        >
+          <div className="project-stage">
+            <article key={project.id} className="project-card project-switch">
+              <div className="project-image">
+                <img src={project.image} alt={project.title} loading="lazy" />
               </div>
 
-              <div className="p-5">
-                <div className="flex items-start justify-between gap-3">
-                  <div>
-                    <p className="text-xs uppercase tracking-[0.2em] text-[var(--accent)]">Featured Work</p>
-                    <h3 className="mt-2 text-xl font-semibold text-[var(--text)]">{project.title}</h3>
-                  </div>
-                </div>
+              <div className="project-content">
+                <p className="project-label">Featured project</p>
+                <h3>{project.title}</h3>
+                <p className="project-description">{project.description}</p>
 
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {project.tags.map((tag, i) => (
-                    <span
-                      key={i}
-                      className="rounded-full border border-gray-200 bg-gray-50 px-3 py-1 text-xs font-medium text-[var(--muted)]"
-                    >
-                      {tag}
-                    </span>
+                <div className="project-tags">
+                  {project.tags.map((tag) => (
+                    <span key={tag}>{tag}</span>
                   ))}
                 </div>
 
-                <div className="mt-5 flex items-center justify-between text-sm text-[var(--text)]">
-                  <span className="font-medium">View details</span>
-                  <span className="text-[var(--muted)] transition-transform group-hover:translate-x-1">→</span>
+                <div className="project-links">
+                  <a href={project.github} target="_blank" rel="noreferrer">
+                    <FaGithub aria-hidden="true" />
+                    View code <span aria-hidden="true">↗</span>
+                  </a>
+                  <a href={project.webapp} target="_blank" rel="noreferrer">
+                    Live project <span aria-hidden="true">↗</span>
+                  </a>
                 </div>
               </div>
-            </div>
-            ))}
+            </article>
           </div>
         </div>
-
-        {selectedProject && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4 overflow-y-auto">
-            <div className="w-full max-w-3xl overflow-hidden rounded-2xl bg-white shadow-2xl my-auto max-h-[90vh] flex flex-col">
-              <div className="flex items-center justify-between border-b border-gray-100 px-6 py-4">
-                <div>
-                  <p className="text-xs uppercase tracking-[0.2em] text-[var(--accent)]">Project details</p>
-                  <h3 className="mt-1 text-2xl font-semibold text-[var(--text)]">{selectedProject.title}</h3>
-                </div>
-                <button onClick={() => setSelectedProject(null)} className="text-3xl leading-none text-[var(--muted)]">
-                  &times;
-                </button>
-              </div>
-
-              <div className="grid gap-0 md:grid-cols-[1.2fr_0.8fr] overflow-y-auto">
-                <div className="bg-gray-50 p-4 md:p-6">
-                  <img
-                    src={selectedProject.image}
-                    alt={selectedProject.title}
-                    className="w-full rounded-xl object-cover shadow-sm aspect-[16/9]"
-                  />
-                </div>
-
-                <div className="p-6 flex flex-col">
-                  <div className="overflow-y-auto max-h-48 pr-2">
-                    <p className="text-sm leading-6 text-[var(--muted)]">{selectedProject.description}</p>
-                  </div>
-
-                  <div className="mt-5 flex flex-wrap gap-2">
-                    {selectedProject.tags.map((tag, i) => (
-                      <span key={i} className="rounded-full border border-gray-200 bg-gray-50 px-3 py-1 text-xs font-medium text-[var(--muted)]">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-
-                  <div className="mt-auto pt-6 flex gap-3">
-                    <a
-                      href={selectedProject.github}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-flex flex-1 items-center justify-center rounded-md border border-gray-200 px-4 py-2 text-sm font-medium text-[var(--text)] transition hover:bg-gray-50"
-                    >
-                      View Code
-                    </a>
-                    <a
-                      href={selectedProject.webapp}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-flex flex-1 items-center justify-center rounded-md bg-[var(--accent)] px-4 py-2 text-sm font-medium text-white transition hover:opacity-95"
-                    >
-                      View Live
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
       </div>
     </section>
   );
